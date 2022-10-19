@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: coredns-custom
+  namespace: kube-system
+data:
+  cockroach.server: | # you may select any name here, but it must end with the .server file extension
+    <region2>.svc.cluster.local:53 {
+        errors
+        cache 30
+        forward . IP1 IP2 IP3 {
+        }
+    }
+    <region3>.svc.cluster.local:53 {
+        errors
+        cache 30
+        forward . IP1 IP2 IP3
+    }
