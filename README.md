@@ -23,5 +23,6 @@ loc2="ukwest"
 loc3="northeurope"
 ```
 
-1. Setup Azure networking and Infrastructure.
-1. CockroachDB installation and configuration.
+1. [Setup Azure networking and Infrastructure.](/markdown/infra-setup.md)
+
+2. [CockroachDB installation and configuration.](/markdown/crdb-setup.md)

@@ -122,3 +122,5 @@ Tags: Azure
         ```bash
         az aks get-credentials --name $clus3 --resource-group $rg
         ```
+
+[home](/README.md)
