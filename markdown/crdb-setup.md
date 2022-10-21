@@ -2,7 +2,7 @@
 
 Description:
 
-## Prepare Kubernetes
+## Prepare Kubernetes
 
 For multi region CockroachDB to work DNS needs to be shared across the three clusters. To do this we expose the coredns deployment outside of the cluster via a LoadBalancer. Use the commands below to create a service that exposes the core dns pods on the VNet.
 
@@ -85,7 +85,7 @@ kubectl delete pod --namespace kube-system --selector k8s-app=kube-dns --context
 
 ```
 
-## CockroachDB Deployment
+## CockroachDB Deployment
 
 Kubernetes is all prepared now for our deployment of CockroachDB. Now we must complete all the steps required to setup CockroachDB.
 First we create two new folders for our certificates.
