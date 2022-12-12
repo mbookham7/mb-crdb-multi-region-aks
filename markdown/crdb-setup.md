@@ -63,9 +63,9 @@ data:
 Once you have updated the config maps for all three regions you can apply them to each of your AKS clusters.
 
 ```
-kubectl -n kube-system create -f manifest/$clus1-configmap.yaml --context $clus1
-kubectl -n kube-system create -f manifest/$clus2-configmap.yaml --context $clus2
-kubectl -n kube-system create -f manifest/$clus3-configmap.yaml --context $clus3
+kubectl -n kube-system replace -f manifest/$clus1-configmap.yaml --context $clus1 --force
+kubectl -n kube-system replace -f manifest/$clus2-configmap.yaml --context $clus2 --force
+kubectl -n kube-system replace -f manifest/$clus3-configmap.yaml --context $clus3 --force
 ```
 
 To check the contents of your config map you can use the describe command to output this to the screen.
@@ -338,5 +338,15 @@ kubectl get svc --context $clus3 --namespace $loc3
 ```
 
 Congratulations! You should now have a working cluster.....
+
+
+## CleanUp
+
+Delete you your certs and Azure resources.
+
+```
+rm -R certs my-safe-directory
+az group delete --name $rg
+```
 
 [home](/README.md)

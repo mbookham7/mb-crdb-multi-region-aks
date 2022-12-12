@@ -5,14 +5,14 @@ metadata:
   namespace: kube-system
 data:
   cockroach.server: | # you may select any name here, but it must end with the .server file extension
-    uksouth.svc.cluster.local:53 {
-        errors
-        cache 30
-        forward . 10.1.1.91 {
-        }
-    }
     northeurope.svc.cluster.local:53 {
         errors
         cache 30
-        forward . 10.3.1.91
+        forward . 10.3.1.91 {
+        }
+    }
+    uksouth.svc.cluster.local:53 {
+        errors
+        cache 30
+        forward . 10.1.1.91
     }
