@@ -308,8 +308,8 @@ GRANT admin TO craig;
 Apply your Enterprise Key if you have one...
 
 ```
-SET CLUSTER SETTING cluster.organization = '';
-SET CLUSTER SETTING enterprise.license = '';
+SET CLUSTER SETTING cluster.organization = 'Cockroach Labs';
+SET CLUSTER SETTING enterprise.license = 'crl-0-EMCU/cYGGAIiDkNvY2tyb2FjaCBMYWJz';
 ```
 
 Configure the map view
@@ -347,6 +347,27 @@ Delete you your certs and Azure resources.
 ```
 rm -R certs my-safe-directory
 az group delete --name $rg
+```
+
+Fix a broken cluster
+```
+kubectl -n $loc1 delete -f ./manifest/uksouth-cockroachdb-statefulset-secure.yaml --context $clus1
+kubectl -n $loc2 delete -f ./manifest/ukwest-cockroachdb-statefulset-secure.yaml --context $clus2
+kubectl -n $loc3 delete -f ./manifest/northeurope-cockroachdb-statefulset-secure.yaml --context $clus3
+```
+
+Delete the PVC for each of the CockroachDB pods.
+```
+kubectl delete pvc -l app=cockroachdb -n $loc1 --context $clus1
+kubectl delete pvc -l app=cockroachdb -n $loc2 --context $clus2
+kubectl delete pvc -l app=cockroachdb -n $loc3 --context $clus3
+```
+
+Redeploy the statefulSet manifests.
+```
+kubectl -n $loc1 apply -f ./manifest/uksouth-cockroachdb-statefulset-secure.yaml --context $clus1
+kubectl -n $loc2 apply -f ./manifest/ukwest-cockroachdb-statefulset-secure.yaml --context $clus2
+kubectl -n $loc3 apply -f ./manifest/northeurope-cockroachdb-statefulset-secure.yaml --context $clus3
 ```
 
 [home](/README.md)
