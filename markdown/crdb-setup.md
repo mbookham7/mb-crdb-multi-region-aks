@@ -135,6 +135,18 @@ generic cockroachdb.client.root \
 --namespace $loc3
 ```
 
+Rolling restart
+```
+kubectl rollout restart sts/cockroachdb --context $clus1 \
+--namespace $loc1
+
+kubectl rollout restart sts/cockroachdb --context $clus2 \
+--namespace $loc2
+
+kubectl rollout restart sts/cockroachdb --context $clus3 \
+--namespace $loc3
+```
+
 Create the certificate and key pair for your CockroachDB nodes in one region:
 
 ```
@@ -316,9 +328,9 @@ Configure the map view
 
 ```
 INSERT INTO system.locations VALUES
-  ('region', 'uksouth', 50.941, -0.799),
-  ('region', 'ukwest', 53.427, -3.084),
-  ('region', 'northeurope', 53.3478, -6.2597);
+  ('region', 'azure-uksouth', 50.941, -0.799),
+  ('region', 'azure-ukwest', 53.427, -3.084),
+  ('region', 'azure-northeurope', 53.3478, -6.2597);
 ```
 
 Expose the Admin UI externally.

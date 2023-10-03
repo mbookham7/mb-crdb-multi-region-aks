@@ -185,7 +185,7 @@ spec:
       #    name: cockroach-env
       containers:
       - name: cockroachdb
-        image: cockroachdb/cockroach:v22.2.6
+        image: cockroachdb/cockroach:v23.1.2
         imagePullPolicy: IfNotPresent
         # TODO: Change these to appropriate values for the hardware that you're running. You can see
         # the resources that can be allocated on each of your Kubernetes nodes by running:
@@ -252,7 +252,7 @@ spec:
             --advertise-host $(hostname -f)
             --http-addr 0.0.0.0
             --join cockroachdb-0.cockroachdb.uksouth,cockroachdb-1.cockroachdb.uksouth,cockroachdb-2.cockroachdb.uksouth,cockroachdb-0.cockroachdb.ukwest,cockroachdb-1.cockroachdb.ukwest,cockroachdb-2.cockroachdb.ukwest,cockroachdb-0.cockroachdb.northeurpoe,cockroachdb-1.cockroachdb.northeurope,cockroachdb-2.cockroachdb.northeurope
-            --locality=cloud=azure,region=northeurope
+            --locality=cloud=azure,region=azure-northeurope
             --cache $(expr $MEMORY_LIMIT_MIB / 4)MiB
             --max-sql-memory $(expr $MEMORY_LIMIT_MIB / 4)MiB
       # No pre-stop hook is required, a SIGTERM plus some time is all that's
