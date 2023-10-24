@@ -321,7 +321,7 @@ Apply your Enterprise Key if you have one...
 
 ```
 SET CLUSTER SETTING cluster.organization = 'Cockroach Labs';
-SET CLUSTER SETTING enterprise.license = 'crl-0-EMCU/cYGGAIiDkNvY2tyb2FjaCBMYWJz';
+SET CLUSTER SETTING enterprise.license = 'crl-0-';
 ```
 
 Configure the map view

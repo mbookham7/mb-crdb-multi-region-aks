@@ -48,3 +48,48 @@ If you like Certbot, please consider supporting our work by:
  * Donating to EFF:                    https://eff.org/donate-le
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 ```
+
+To update the cert you will need to update the secret containing the files for the certificate.
+
+To update the secret you will delete it and recreate it with the new files.
+```
+kubectl delete secret cockroachdb.client.root --context $clus1 --namespace $loc1
+kubectl delete secret cockroachdb.client.root --context $clus2 --namespace $loc2
+kubectl delete secret cockroachdb.client.root --context $clus3 --namespace $loc3
+```
+
+Recreate the secret in each region.
+```
+kubectl create secret \
+generic cockroachdb.client.root \
+--from-file=certs \
+--context $clus1 \
+--namespace $loc1
+```
+```
+kubectl create secret \
+generic cockroachdb.client.root \
+--from-file=certs \
+--context $clus2 \
+--namespace $loc2
+```
+```
+kubectl create secret \
+generic cockroachdb.client.root \
+--from-file=certs \
+--context $clus3 \
+--namespace $loc3
+```
+
+Rolling restart
+```
+kubectl rollout restart sts/cockroachdb --context $clus1 \
+--namespace $loc1
+
+kubectl rollout restart sts/cockroachdb --context $clus2 \
+--namespace $loc2
+
+kubectl rollout restart sts/cockroachdb --context $clus3 \
+--namespace $loc3
+```
+
