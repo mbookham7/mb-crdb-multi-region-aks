@@ -1,2 +1,4 @@
 /certs
 /my-safe-directory
+ui.key
+ui.crt
